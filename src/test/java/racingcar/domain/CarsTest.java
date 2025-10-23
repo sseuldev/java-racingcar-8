@@ -57,6 +57,6 @@ public class CarsTest {
         // then
         assertThat(winners)
                 .extracting(Car::getName)
-                .containsExactlyInAnyOrder("woni", "jun");
+                .containsExactly("woni", "jun");
     }
 }
