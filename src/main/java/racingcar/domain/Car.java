@@ -14,6 +14,12 @@ public class Car {
         this.name = name;
     }
 
+    public Car(String name, int distance) {
+        validateName(name);
+        this.name = name;
+        this.distance = distance;
+    }
+
     public void move() {
         distance++;
     }
