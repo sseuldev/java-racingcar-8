@@ -15,7 +15,7 @@ public class PreparationHelper {
     }
 
     public int createRound(String input) {
-        validateRound(input);
+        validateRoundNumber(input);
 
         int round = Integer.parseInt(input);
         validatePositiveInt(round);
@@ -34,21 +34,14 @@ public class PreparationHelper {
         }
     }
 
-    private void validateRound(String input) {
-        validateRoundNumber(input);
-        validateOverflow(input);
-    }
-
     private void validateRoundNumber(String input) {
-        if (!input.matches("\\d+")) {
+        try {
+            long value = Long.parseLong(input.trim());
+            if (value > Integer.MAX_VALUE || value < Integer.MIN_VALUE) {
+                throw new IllegalArgumentException(ErrorMessages.INVALID_RANGE_OF_INT);
+            }
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessages.INVALID_ROUND_TYPE);
-        }
-    }
-
-    private void validateOverflow(String input) {
-        long temp = Long.parseLong(input);
-        if (temp > Integer.MAX_VALUE || temp < Integer.MIN_VALUE) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_RANGE_OF_INT);
         }
     }
 
