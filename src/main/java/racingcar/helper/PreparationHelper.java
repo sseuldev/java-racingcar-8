@@ -15,9 +15,9 @@ public class PreparationHelper {
     }
 
     public int createRound(String input) {
-        validateRoundNumber(input);
-
-        int round = Integer.parseInt(input);
+        String trimInput = input.trim();
+        validateRoundNumber(trimInput);
+        int round = Integer.parseInt(trimInput);
         validatePositiveInt(round);
         return round;
     }
@@ -36,7 +36,7 @@ public class PreparationHelper {
 
     private void validateRoundNumber(String input) {
         try {
-            long value = Long.parseLong(input.trim());
+            long value = Long.parseLong(input);
             if (value > Integer.MAX_VALUE || value < Integer.MIN_VALUE) {
                 throw new IllegalArgumentException(ErrorMessages.INVALID_RANGE_OF_INT);
             }
